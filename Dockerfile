@@ -1,14 +1,11 @@
-# Start with a base image containing Java runtime
-FROM openjdk:latest
-# Add Maintainer Info
-LABEL maintainer="sinduja.nasa01@gmail.com"
-# Add a volume pointing to /tmp
+FROM maven:3.6.0-jdk-11-slim AS build
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn -f /home/app/pom.xml clean package
+
+FROM java:11
 VOLUME /tmp
-# Make port 8081 available to the world outside this container
-EXPOSE 8080
-# The application's jar file
-ARG JAR_FILE=target/demo3-0.0.1-SNAPSHOT.jar
-# Add the application's jar to the container
-ADD ${JAR_FILE} demo3-0.0.1-SNAPSHOT.jar
-# Run the jar file
-ENTRYPOINT ["java","-jar","/demo3-0.0.1-SNAPSHOT.jar"]
+ADD target/demo3-0.0.1-SNAPSHOT.jar user.jar
+RUN bash -c 'touch /user.jar'
+ENV JAVA_OPTS=""
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /user.jar"]
