@@ -4,7 +4,7 @@ COPY ./src ./src
 RUN mvn dependency:go-offline -B
 RUN mvn clean package
 FROM openjdk:8u171-jre-alpine
+COPY --from= ./target/demo3*.jar ./awsdocker/demo3.jar
 WORKDIR /awsdocker
-VOLUME /tmp
-COPY --from= target/demo3*.jar ./awsdocker/demo3.jar
+
 CMD ["java", "-jar", "./awsdocker/demo3.jar"]
