@@ -4,5 +4,6 @@ COPY ./src ./src
 RUN mvn dependency:go-offline -B
 RUN mvn clean package
 FROM openjdk:8u171-jre-alpine
-COPY  ./target/demo3*.jar ./awsdocker/demo3.jar
-CMD ["java", "-jar", "./awsdocker/demo3.jar"]
+WORKDIR /adevguide
+COPY --from=maven target/demo-*.jar ./adevguide/demo.jar
+CMD ["java", "-jar", "./adevguide/demo3.jar"]
