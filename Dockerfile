@@ -6,5 +6,5 @@ RUN mvn clean package
 FROM openjdk:8u171-jre-alpine
 WORKDIR /awsdocker
 VOLUME /tmp
-COPY --from=maven target/demo3-0.0.1-*.jar ./demo3.jar
-CMD ["java", "-jar", "./SimpleJavaProject.jar"]
+COPY --from=maven target/demo3*.jar ./awsdocker/demo3.jar
+CMD ["java", "-jar", "./awsdocker/demo3.jar"]
