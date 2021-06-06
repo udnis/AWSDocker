@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/sample-app",
+          "awslogs-group": "/ecs/first-run-task-definition",
           "awslogs-region": "us-east-2",
           "awslogs-stream-prefix": "ecs"
         }
@@ -30,7 +30,7 @@
       "memory": null,
       "memoryReservation": null,
       "volumesFrom": [],
-      "stopTimeout": null
+      "stopTimeout": null,
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -57,7 +57,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-2:486761195222:task-definition/sample-app:1",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-2:486761195222:task-definition/first-run-task-definition:3",
   "family": "first-run-task-definition",
   "requiresAttributes": [
     {
