@@ -4,6 +4,4 @@ COPY ./src ./src
 RUN mvn dependency:go-offline -B
 RUN mvn clean package
 FROM openjdk:8u171-jre-alpine
-WORKDIR /adevguide
-COPY --from=maven target/demo-*.jar ./adevguide/demo.jar
-CMD ["java", "-jar", "./adevguide/demo3.jar"]
+CMD ["java", "-jar", "./target/demo3-*.jar"]
